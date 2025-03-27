@@ -67,25 +67,50 @@
 //     }
 // }
 
-const num = document.getElementById("num");
-const tofarenhigh = document.getElementById("tofarenhigh")
-const tocelcius = document.getElementById("tocelcius")
-const result = document.getElementById("result")
+// const num = document.getElementById("num");
+// const tofarenhigh = document.getElementById("tofarenhigh")
+// const tocelcius = document.getElementById("tocelcius")
+// const result = document.getElementById("result")
 
-let temprature;
+// let temprature;
 
-function convert(){
-    if(tofarenhigh.checked){
-        temprature = Number(num.value)
-        temprature = temprature *9 /5 +32;
-        result.textContent = ((temprature.toFixed(1)) + "º F");
-    }
-    else if(tocelcius.checked){
-        temprature = Number(num.value)
-        temprature = (temprature - 32) * (5/9)
-        result.textContent = ((temprature.toFixed(1)) + "º C");
-    }
-    else{
-        result.textContent = 'select any things'
-    }
+// function convert(){
+//     if(tofarenhigh.checked){
+//         temprature = Number(num.value)
+//         temprature = temprature *9 /5 +32;
+//         result.textContent = ((temprature.toFixed(1)) + "º F");
+//     }
+//     else if(tocelcius.checked){
+//         temprature = Number(num.value)
+//         temprature = (temprature - 32) * (5/9)
+//         result.textContent = ((temprature.toFixed(1)) + "º C");
+//     }
+//     else{
+//         result.textContent = 'select any things'
+//     }
+// }
+
+
+function rollDice(){
+    const numOfDice = document.getElementById("numOfDice");
+const dName = document.getElementById("dName")
+const dimage = document.getElementById("dimage")
+
+
+const values = [];
+const images = [];
+
+   num = numOfDice.value;
+  
+   for(let i = 0; i< num; i++){
+    const value = Math.floor(Math.random()*6) +1;
+    values.push(value)
+
+    images.push(` <img src="./images/${value}.png" alt="${value}">`)
+    
+   }
+
+   dName.textContent =` dice ${values.join(", ")}`
+   dimage.innerHTML = `images ${images.join('')}`
+   
 }
