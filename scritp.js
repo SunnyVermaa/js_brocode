@@ -90,27 +90,46 @@
 //     }
 // }
 
+// //---------------------------------------------------------------
+// function rollDice(){
+//     const numOfDice = document.getElementById("numOfDice");
+// const dName = document.getElementById("dName")
+// const dimage = document.getElementById("dimage")
 
-function rollDice(){
-    const numOfDice = document.getElementById("numOfDice");
-const dName = document.getElementById("dName")
-const dimage = document.getElementById("dimage")
 
+// const values = [];
+// const images = [];
 
-const values = [];
-const images = [];
-
-   num = numOfDice.value;
+//    num = numOfDice.value;
   
-   for(let i = 0; i< num; i++){
-    const value = Math.floor(Math.random()*6) +1;
-    values.push(value)
+//    for(let i = 0; i< num; i++){
+//     const value = Math.floor(Math.random()*6) +1;
+//     values.push(value)
 
-    images.push(` <img src="./images/${value}.png" alt="${value}">`)
+//     images.push(` <img src="./images/${value}.png" alt="${value}">`)
     
-   }
+//    }
 
-   dName.textContent =` dice ${values.join(", ")}`
-   dimage.innerHTML = `images ${images.join('')}`
+//    dName.textContent =` dice ${values.join(", ")}`
+//    dimage.innerHTML = `images ${images.join('')}`
    
+// }
+
+
+
+
+
+function calculator(){
+    const Pamount = document.getElementById("pAmmount");
+const interest = document.getElementById("interest");
+const months = document.getElementById("months");
+const total = document.getElementById("total");
+
+   let amount = Number(Pamount.value);
+   let inter = Number(interest.value /100);
+   let mon = Number(months.value);
+
+   const result = amount  + (amount * inter * mon);
+
+   total.textContent = `is for ${mon} months are ₹${result}`;
 }
