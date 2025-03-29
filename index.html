@@ -81,12 +81,37 @@
 
 
 
-<h2>stopwatch</h2>
+<!-- <h2>stopwatch</h2>
 <div id="watch">00 : 00 : 00 : 00</div>
 
 <button type="button" onclick="start()">start</button>
 <button type="button" onclick="stop()">stop</button>
-<button type="button" onclick="reset()">reset</button>
+<button type="button" onclick="reset()">reset</button> -->
+
+<div id="calculator">
+    <h2>&nbsp; &nbsp; &nbsp; calculator</h2>
+    <input type="text" id="display" readonly>
+
+    <div id="keys"><br>
+        <button onclick="keyofcal('+')">+</button>
+        <button onclick="keyofcal('7')">7</button>
+        <button onclick="keyofcal('8')">8</button>
+        <button onclick="keyofcal('9')">9</button><br>
+        <button onclick="keyofcal('-')">-</button>
+        <button onclick="keyofcal('4')">4</button>
+        <button onclick="keyofcal('5')">5</button>
+        <button onclick="keyofcal('6')">6</button><br>
+        <button onclick="keyofcal('*')">x</button>
+        <button onclick="keyofcal('1')">1</button>
+        <button onclick="keyofcal('2')">2</button>
+        <button onclick="keyofcal('3')">3</button><br>
+        <button onclick="keyofcal('/')">/</button>
+        <button onclick="keyofcal('0')">0</button>
+        <button onclick="keyofcal('.')">.</button>
+        <button onclick="calculate()">=</button><br>
+        <button onclick="cleardisplay()">C</button>
+    </div>
+</div>
 
 
     <script src="scritp.js"></script>

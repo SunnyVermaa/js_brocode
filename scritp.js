@@ -155,56 +155,27 @@
 
 //-------------------------------------------------------
 
-const display = document.getElementById("watch");
-
-let timer = null;
-let starttimer = 0;
-let elispetimer = 0;
-let isRunning = false;
+// 
 
 
+const Display = document.getElementById("display");
 
-function start(){
-    if(!isRunning){
-        starttimer = Date.now() - elispetimer;
-        timer = setInterval(updatewatch, 10);
-        isRunning = true;
-    }
+function keyofcal(input){
+Display.value += input
 
 }
 
-function stop(){
-if(isRunning){
-    clearInterval(timer)
-    elispetimer = Date.now() - starttimer
-    isRunning = false
+function calculate(){
+try{
+    Display.value = eval(Display.value)
+}
+catch(error){
+Display.value = "Error";
 }
 
 }
 
-function reset(){
+function cleardisplay(){
 
-    clearInterval(timer)
-    starttimer = 0;
-    elispetimer = 0;
-    isRunning = false
-    display.textContent = "00 : 00 : 00 : 00"
-
-}
-
-function updatewatch(){
- const currenttime = Date.now();
- elispetimer = currenttime - starttimer;
-
- let hours = Math.floor(elispetimer / (1000 * 60 * 60));
- let minutes = Math.floor(elispetimer / (1000 * 60)% 60);
- let second = Math.floor(elispetimer / (1000) %60);
- let millisecond = Math.floor(elispetimer %1000 /10);
-
- hours = String(hours).padStart(2,0);
- minutes = String(minutes).padStart(2,0);
- second = String(second).padStart(2,0);
- millisecond = String(millisecond).padStart(2,0);
-
- display.textContent = ` ${hours} : ${minutes} : ${second} : ${millisecond}`
+    Display.value = "";
 }

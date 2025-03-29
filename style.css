@@ -1,0 +1,15 @@
+
+button{
+    width: 40px;
+    cursor: pointer;
+    /* border: none; */
+    
+}
+
+button:active{
+    background-color: rgba(43, 69, 77, 0.521);
+}
+
+button:nth-last-child(1){
+    width: 172px;
+}
