@@ -116,20 +116,39 @@
 // }
 
 
+//---------------------------------------------------------------------------------------------------------
 
 
+// function calculator(){
+//     const Pamount = document.getElementById("pAmmount");
+// const interest = document.getElementById("interest");
+// const months = document.getElementById("months");
+// const total = document.getElementById("total");
 
-function calculator(){
-    const Pamount = document.getElementById("pAmmount");
-const interest = document.getElementById("interest");
-const months = document.getElementById("months");
-const total = document.getElementById("total");
+//    let amount = Number(Pamount.value);
+//    let inter = Number(interest.value /100);
+//    let mon = Number(months.value);
 
-   let amount = Number(Pamount.value);
-   let inter = Number(interest.value /100);
-   let mon = Number(months.value);
+//    const result = amount  + (amount * inter * mon);
 
-   const result = amount  + (amount * inter * mon);
+//    total.textContent = `is for ${mon} months are ₹${result}`;
+// }
 
-   total.textContent = `is for ${mon} months are ₹${result}`;
+
+//------------------------------------------------------------------------------------------
+
+function updateClock(){
+    const now = new Date()
+    let hours = now.getHours();
+    const medrian = hours >= 12 ? "PM": "AM";
+    hours = hours % 12 || 12
+    hours = hours.toString().padStart(2,0);
+    const minutes = now.getMinutes().toString().padStart(2,0)
+    const second = now.getSeconds().toString().padStart(2,0)
+
+    const timeString = `${hours}:${minutes}:${second} ${medrian}`
+
+    document.getElementById("clock").textContent = timeString
 }
+
+setInterval(updateClock,1000)
