@@ -137,18 +137,74 @@
 
 //------------------------------------------------------------------------------------------
 
-function updateClock(){
-    const now = new Date()
-    let hours = now.getHours();
-    const medrian = hours >= 12 ? "PM": "AM";
-    hours = hours % 12 || 12
-    hours = hours.toString().padStart(2,0);
-    const minutes = now.getMinutes().toString().padStart(2,0)
-    const second = now.getSeconds().toString().padStart(2,0)
+// function updateClock(){
+//     const now = new Date()
+//     let hours = now.getHours();
+//     const medrian = hours >= 12 ? "PM": "AM";
+//     hours = hours % 12 || 12
+//     hours = hours.toString().padStart(2,0);
+//     const minutes = now.getMinutes().toString().padStart(2,0)
+//     const second = now.getSeconds().toString().padStart(2,0)
 
-    const timeString = `${hours}:${minutes}:${second} ${medrian}`
+//     const timeString = `${hours}:${minutes}:${second} ${medrian}`
 
-    document.getElementById("clock").textContent = timeString
+//     document.getElementById("clock").textContent = timeString
+// }
+
+// setInterval(updateClock,1000)
+
+//-------------------------------------------------------
+
+const display = document.getElementById("watch");
+
+let timer = null;
+let starttimer = 0;
+let elispetimer = 0;
+let isRunning = false;
+
+
+
+function start(){
+    if(!isRunning){
+        starttimer = Date.now() - elispetimer;
+        timer = setInterval(updatewatch, 10);
+        isRunning = true;
+    }
+
 }
 
-setInterval(updateClock,1000)
+function stop(){
+if(isRunning){
+    clearInterval(timer)
+    elispetimer = Date.now() - starttimer
+    isRunning = false
+}
+
+}
+
+function reset(){
+
+    clearInterval(timer)
+    starttimer = 0;
+    elispetimer = 0;
+    isRunning = false
+    display.textContent = "00 : 00 : 00 : 00"
+
+}
+
+function updatewatch(){
+ const currenttime = Date.now();
+ elispetimer = currenttime - starttimer;
+
+ let hours = Math.floor(elispetimer / (1000 * 60 * 60));
+ let minutes = Math.floor(elispetimer / (1000 * 60)% 60);
+ let second = Math.floor(elispetimer / (1000) %60);
+ let millisecond = Math.floor(elispetimer %1000 /10);
+
+ hours = String(hours).padStart(2,0);
+ minutes = String(minutes).padStart(2,0);
+ second = String(second).padStart(2,0);
+ millisecond = String(millisecond).padStart(2,0);
+
+ display.textContent = ` ${hours} : ${minutes} : ${second} : ${millisecond}`
+}
