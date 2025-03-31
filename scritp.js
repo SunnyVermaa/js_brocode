@@ -208,57 +208,116 @@
 //     }
 // })
 
-const choices = ['rock', 'paper', 'scissor'];
+//-------------------------------------------------------------
+// const choices = ['rock', 'paper', 'scissor'];
 
-const playerDisplay = document.getElementById('playerDisplay');
-const computerDisplay = document.getElementById('computerDisplay');
-const resultDisplay = document.getElementById('resultDisplay');
-const playerScore = document.getElementById('playerScore');
-const computerScore = document.getElementById('computerScore');
+// const playerDisplay = document.getElementById('playerDisplay');
+// const computerDisplay = document.getElementById('computerDisplay');
+// const resultDisplay = document.getElementById('resultDisplay');
+// const playerScore = document.getElementById('playerScore');
+// const computerScore = document.getElementById('computerScore');
 
-let playerSc = 0;
-let computerSc = 0;
+// let playerSc = 0;
+// let computerSc = 0;
 
-let result = '';
+// let result = '';
 
-function playGame(playerChoices){
- const computerChoices =choices[Math.floor( Math.random() * 3)]
+// function playGame(playerChoices){
+//  const computerChoices =choices[Math.floor( Math.random() * 3)]
  
- let result = '';
+//  let result = '';
 
- if(playerChoices === computerChoices){
-    result= `match tie`
- }
+//  if(playerChoices === computerChoices){
+//     result= `match tie`
+//  }
 
- else{
-    switch(playerChoices){
-        case 'rock' :
-           result = (computerChoices === 'scissor') ? 'you win' : 'you lose';
-            break;
-        case 'paper' :
-            result = (computerChoices === 'rock') ? 'you win' : 'you lose';
-            break;
-        case 'scissor' :
-           result = (computerChoices === 'paper') ? 'you win ' : 'you lose';
-            break;
+//  else{
+//     switch(playerChoices){
+//         case 'rock' :
+//            result = (computerChoices === 'scissor') ? 'you win' : 'you lose';
+//             break;
+//         case 'paper' :
+//             result = (computerChoices === 'rock') ? 'you win' : 'you lose';
+//             break;
+//         case 'scissor' :
+//            result = (computerChoices === 'paper') ? 'you win ' : 'you lose';
+//             break;
 
+//     }
+//  }
+ 
+//  playerDisplay.textContent = `Player choice : ${playerChoices}`;
+//  computerDisplay.textContent = `Computer choice : ${computerChoices}`;
+//  resultDisplay.textContent = `Result : ${result}`;
+
+
+// switch(result){
+//     case 'you win' :
+//         playerSc++;
+//         playerScore.textContent = `Player Score : ${playerSc}`
+//         break;
+
+//     case 'you lose' : 
+//         computerSc++;
+//         computerScore.textContent = `Computer Score : ${computerSc}`
+
+// }
+// }
+
+//------------------------------------------------------------------------------------------------------------
+
+let currentIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+let autoSlide = setInterval(next, 2500);
+const slideContainer = document.querySelector('.slides');
+
+// Clone first and last slides to create infinite effect
+const firstClone = slides[0].cloneNode(true);
+const lastClone = slides[totalSlides - 1].cloneNode(true);
+slideContainer.appendChild(firstClone);
+slideContainer.insertBefore(lastClone, slides[0]);
+
+const allSlides = document.querySelectorAll('.slide');
+const newTotalSlides = allSlides.length;
+currentIndex = 1;
+slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+function showSlide(index) {
+    slideContainer.style.transition = "transform .6s ease-in-out";
+    currentIndex = index;
+    slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    if (index >= newTotalSlides - 1) {
+        setTimeout(() => {
+            slideContainer.style.transition = "none";
+            currentIndex = 1;
+            slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }, 600);
+    } else if (index <= 0) {
+        setTimeout(() => {
+            slideContainer.style.transition = "none";
+            currentIndex = newTotalSlides - 2;
+            slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }, 600);
     }
- }
- 
- playerDisplay.textContent = `Player choice : ${playerChoices}`;
- computerDisplay.textContent = `Computer choice : ${computerChoices}`;
- resultDisplay.textContent = `Result : ${result}`;
+}
 
+function next() {
+    showSlide(currentIndex + 1);
+    resetAutoSlide();
+}
 
-switch(result){
-    case 'you win' :
-        playerSc++;
-        playerScore.textContent = `Player Score : ${playerSc}`
-        break;
-
-    case 'you lose' : 
-        computerSc++;
-        computerScore.textContent = `Computer Score : ${computerSc}`
+function prev() {
+    showSlide(currentIndex - 1);
+    clearInterval(autoSlide);
 
 }
+
+function resetAutoSlide() {
+    clearInterval(autoSlide);
+    autoSlide = setInterval(next, 2500);
 }
+
+// Initialize the slider
+showSlide(currentIndex);
