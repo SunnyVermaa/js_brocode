@@ -1,8 +1,8 @@
-
+/* 
 button{
     width: 40px;
     cursor: pointer;
-    /* border: none; */
+ 
     
 }
 
@@ -12,4 +12,4 @@ button:active{
 
 button:nth-last-child(1){
     width: 172px;
-}
+} */

@@ -158,24 +158,52 @@
 // 
 
 
-const Display = document.getElementById("display");
+// const Display = document.getElementById("display");
 
-function keyofcal(input){
-Display.value += input
+// function keyofcal(input){
+// Display.value += input
 
-}
+// }
 
-function calculate(){
-try{
-    Display.value = eval(Display.value)
-}
-catch(error){
-Display.value = "Error";
-}
+// function calculate(){
+// try{
+//     Display.value = eval(Display.value)
+// }
+// catch(error){
+// Display.value = "Error";
+// }
 
-}
+// }
 
-function cleardisplay(){
+// function cleardisplay(){
 
-    Display.value = "";
-}
+//     Display.value = "";
+// }
+
+
+const myh2 = document.getElementById("myh2");
+const moveAmount = 2;
+let x = 20;
+let y = 50;
+document.addEventListener("keydown", event =>{
+    if(event.key.startsWith("Arrow")){
+        switch(event.key){
+            case "ArrowUp": y -= moveAmount;
+            break;
+
+            case "ArrowDown" : y += moveAmount;
+            break;
+
+            case "ArrowLeft" : x -= moveAmount;
+            break;
+
+            case "ArrowRight" : x += moveAmount;
+            break;
+
+
+        }
+
+        myh2.style.top = `${y}px`;
+        myh2.style.left = `${x}px`;
+    }
+})
