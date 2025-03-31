@@ -180,30 +180,85 @@
 //     Display.value = "";
 // }
 
+//-----------------------------------------------------------------------------------
+// const myh2 = document.getElementById("myh2");
+// const moveAmount = 2;
+// let x = 20;
+// let y = 50;
+// document.addEventListener("keydown", event =>{
+//     if(event.key.startsWith("Arrow")){
+//         switch(event.key){
+//             case "ArrowUp": y -= moveAmount;
+//             break;
 
-const myh2 = document.getElementById("myh2");
-const moveAmount = 2;
-let x = 20;
-let y = 50;
-document.addEventListener("keydown", event =>{
-    if(event.key.startsWith("Arrow")){
-        switch(event.key){
-            case "ArrowUp": y -= moveAmount;
+//             case "ArrowDown" : y += moveAmount;
+//             break;
+
+//             case "ArrowLeft" : x -= moveAmount;
+//             break;
+
+//             case "ArrowRight" : x += moveAmount;
+//             break;
+
+
+//         }win
+
+//         myh2.style.top = `${y}px`;
+//         myh2.style.left = `${x}px`;
+//     }
+// })
+
+const choices = ['rock', 'paper', 'scissor'];
+
+const playerDisplay = document.getElementById('playerDisplay');
+const computerDisplay = document.getElementById('computerDisplay');
+const resultDisplay = document.getElementById('resultDisplay');
+const playerScore = document.getElementById('playerScore');
+const computerScore = document.getElementById('computerScore');
+
+let playerSc = 0;
+let computerSc = 0;
+
+let result = '';
+
+function playGame(playerChoices){
+ const computerChoices =choices[Math.floor( Math.random() * 3)]
+ 
+ let result = '';
+
+ if(playerChoices === computerChoices){
+    result= `match tie`
+ }
+
+ else{
+    switch(playerChoices){
+        case 'rock' :
+           result = (computerChoices === 'scissor') ? 'you win' : 'you lose';
+            break;
+        case 'paper' :
+            result = (computerChoices === 'rock') ? 'you win' : 'you lose';
+            break;
+        case 'scissor' :
+           result = (computerChoices === 'paper') ? 'you win ' : 'you lose';
             break;
 
-            case "ArrowDown" : y += moveAmount;
-            break;
-
-            case "ArrowLeft" : x -= moveAmount;
-            break;
-
-            case "ArrowRight" : x += moveAmount;
-            break;
-
-
-        }
-
-        myh2.style.top = `${y}px`;
-        myh2.style.left = `${x}px`;
     }
-})
+ }
+ 
+ playerDisplay.textContent = `Player choice : ${playerChoices}`;
+ computerDisplay.textContent = `Computer choice : ${computerChoices}`;
+ resultDisplay.textContent = `Result : ${result}`;
+
+
+switch(result){
+    case 'you win' :
+        playerSc++;
+        playerScore.textContent = `Player Score : ${playerSc}`
+        break;
+
+    case 'you lose' : 
+        computerSc++;
+        computerScore.textContent = `Computer Score : ${computerSc}`
+
+}
+}
